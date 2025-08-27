@@ -1,0 +1,76 @@
+// WARNING: This output format is intended for human consumers only
+// and is subject to change without notice. Knock yourself out.
+fn main() -> () {
+    let mut _0: ();
+    let mut _1: [u8; 5];
+    let mut _3: &mut u8;
+    let mut _4: &mut [u8];
+    let mut _5: &mut [u8; 5];
+    let mut _6: usize;
+    let _7: ();
+    let mut _8: std::fmt::Arguments<'_>;
+    let _9: &[&str; 2];
+    let _10: &[core::fmt::rt::Argument<'_>; 1];
+    let _11: [core::fmt::rt::Argument<'_>; 1];
+    let mut _12: core::fmt::rt::Argument<'_>;
+    let _13: &u8;
+    scope 1 {
+        debug array => _1;
+        scope 2 {
+            debug i => const 5_usize;
+            let _2: u8;
+            scope 3 {
+                debug _unchecked_access => _2;
+            }
+        }
+    }
+
+    bb0: {
+        _1 = [const 1_u8, const 2_u8, const 3_u8, const 4_u8, const 5_u8];
+        _5 = &mut _1;
+        _4 = move _5 as &mut [u8] (PointerCoercion(Unsize, Implicit));
+        _6 = const 5_usize;
+        _3 = core::slice::<impl [u8]>::get_unchecked_mut::<usize>(move _4, move _6) -> [return: bb1, unwind continue];
+    }
+
+    bb1: {
+        _2 = copy (*_3);
+        _9 = const main::promoted[0];
+        _13 = &_2;
+        _12 = core::fmt::rt::Argument::<'_>::new_display::<u8>(copy _13) -> [return: bb2, unwind continue];
+    }
+
+    bb2: {
+        _11 = [move _12];
+        _10 = &_11;
+        _8 = Arguments::<'_>::new_v1::<2, 1>(copy _9, copy _10) -> [return: bb3, unwind continue];
+    }
+
+    bb3: {
+        _7 = _print(move _8) -> [return: bb4, unwind continue];
+    }
+
+    bb4: {
+        return;
+    }
+}
+
+const main::promoted[0]: &[&str; 2] = {
+    let mut _0: &[&str; 2];
+    let mut _1: [&str; 2];
+
+    bb0: {
+        _1 = [const "unchecked_access: ", const "\n"];
+        _0 = &_1;
+        return;
+    }
+}
+
+main::{constant#0}: usize = {
+    let mut _0: usize;
+
+    bb0: {
+        _0 = const 5_usize;
+        return;
+    }
+}
